@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Kos IoT System Proposal</title>
+
+<style>
+:root{
+    --primary:#ff6a00;
+    --secondary:#1f2937;
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --text:#333;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    background:var(--secondary);
+    color:white;
+    padding:60px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+header p{
+    opacity:0.85;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h2{
+    color:var(--secondary);
+    margin-bottom:20px;
+    border-left:6px solid var(--primary);
+    padding-left:15px;
+}
+
+.diagram{
+    text-align:center;
+}
+
+.diagram img{
+    width:100%;
+    max-width:700px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.spec-box{
+    background:#fafafa;
+    border-radius:15px;
+    padding:20px;
+    border:1px solid #e5e7eb;
+}
+
+.spec-box h3{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+.table{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:var(--primary);
+    color:white;
+}
+
+td,th{
+    padding:14px;
+    border:1px solid #ddd;
+    text-align:left;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Smart Kos IoT System</h1>
+    <p>6-Room Modular Building Automation Proposal</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>System Architecture</h2>
+
+        <div class="diagram">
+            <!-- replace with your image -->
+            <img src="architecture.png" alt="System Architecture">
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>System Overview</h2>
+
+        <p>
+            The proposed solution uses a distributed modular architecture.
+            Each room has its own controller module (Slave Node) connected
+            through an RS485 Modbus RTU network to a central Master Controller.
+            The Master Controller communicates with the MQTT server and dashboard
+            through LAN/VLAN.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Hardware Architecture</h2>
+
+        <div class="grid">
+
+            <div class="spec-box">
+                <h3>Slave Node (Per Room)</h3>
+
+                <ul>
+                    <li>4x Relay Outputs</li>
+                    <li>IR AC Controller</li>
+                    <li>Door Sensor</li>
+                    <li>Motion Sensor</li>
+                    <li>PZEM Energy Monitor</li>
+                    <li>Local Switch Inputs</li>
+                    <li>RS485 Modbus RTU</li>
+                </ul>
+            </div>
+
+            <div class="spec-box">
+                <h3>Master Controller</h3>
+
+                <ul>
+                    <li>ESP32-S3</li>
+                    <li>Ethernet LAN/VLAN</li>
+                    <li>MQTT Client</li>
+                    <li>RS485 Master</li>
+                    <li>Automation Engine</li>
+                    <li>Dashboard Integration</li>
+                    <li>Future OTA Capability</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Supported Microcontrollers for Slave Node</h2>
+
+        <div class="table">
+        <table>
+            <tr>
+                <th>Microcontroller</th>
+                <th>Suitable</th>
+                <th>Notes</th>
+            </tr>
+
+            <tr>
+                <td>ESP32</td>
+                <td>✅</td>
+                <td>WiFi capable, large memory</td>
+            </tr>
+
+            <tr>
+                <td>ESP32-S3</td>
+                <td>✅</td>
+                <td>Higher performance and RAM</td>
+            </tr>
+
+            <tr>
+                <td>STM32</td>
+                <td>✅</td>
+                <td>Industrial-grade reliability</td>
+            </tr>
+
+            <tr>
+                <td>Arduino Nano (ATmega328P)</td>
+                <td>✅</td>
+                <td>Fully capable as Modbus RTU slave</td>
+            </tr>
+
+            <tr>
+                <td>RP2040 / PIC / Others</td>
+                <td>✅</td>
+                <td>As long as UART Modbus RTU is supported</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Communication Specifications</h2>
+
+        <ul>
+            <li>Protocol : Modbus RTU</li>
+            <li>Physical Layer : RS485 (2-wire half duplex)</li>
+            <li>Topology : Daisy Chain</li>
+            <li>Cable : CAT5e / CAT6 (RJ45)</li>
+            <li>Baudrate : 9600 – 115200 bps</li>
+            <li>Maximum Nodes : 247</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>System Advantages</h2>
+
+        <ul>
+            <li>Modular per room installation</li>
+            <li>Easy maintenance and replacement</li>
+            <li>Minimal wiring</li>
+            <li>Reliable wired communication</li>
+            <li>LAN/VLAN compatible</li>
+            <li>MQTT and dashboard integration</li>
+            <li>Expandable for future rooms/buildings</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Pilot Project Scope</h2>
+
+        <ul>
+            <li>6 Room Controller Modules</li>
+            <li>1 Master Controller</li>
+            <li>Power Distribution Panel</li>
+            <li>RS485 Network Installation</li>
+            <li>MQTT Integration Support</li>
+            <li>Custom PCB available for mass production</li>
+        </ul>
+    </div>
+
+</div>
+
+<footer>
+    Smart Kos IoT System Proposal • Modular Building Automation Platform
+</footer>
+
+</body>
+</html>
