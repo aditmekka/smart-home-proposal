@@ -195,46 +195,40 @@ footer{
     </div>
 
     <div class="card">
-        <h2>Supported Microcontrollers for Slave Node</h2>
+        <h2>Recommended Slave Node Platform</h2>
 
-        <div class="table">
-        <table>
-            <tr>
-                <th>Microcontroller</th>
-                <th>Suitable</th>
-                <th>Notes</th>
-            </tr>
+        <div class="spec-box">
+            <h3>Why ESP32 is Recommended</h3>
 
-            <tr>
-                <td>ESP32</td>
-                <td>✅</td>
-                <td>WiFi capable, large memory</td>
-            </tr>
+            <ul>
+                <li>Large Flash and RAM for future feature expansion.</li>
+                <li>Built-in WiFi and Bluetooth for commissioning and maintenance.</li>
+                <li>Supports Over-The-Air (OTA) firmware updates.</li>
+                <li>Multiple UART, SPI, I²C, PWM, and ADC peripherals.</li>
+                <li>Sufficient processing power for Modbus RTU, sensor monitoring, and local automation simultaneously.</li>
+                <li>Large ecosystem and long-term availability.</li>
+                <li>Cost-effective compared to industrial PLC hardware.</li>
+                <li>Single hardware platform simplifies manufacturing and maintenance.</li>
+            </ul>
+        </div>
+    </div>
 
-            <tr>
-                <td>ESP32-S3</td>
-                <td>✅</td>
-                <td>Higher performance and RAM</td>
-            </tr>
+    <div class="card">
+        <h2>Recommended Master Node Platform</h2>
 
-            <tr>
-                <td>STM32</td>
-                <td>✅</td>
-                <td>Industrial-grade reliability</td>
-            </tr>
+        <div class="spec-box">
+            <h3>Why ESP32-S3 is Recommended for the Master Controller</h3>
 
-            <tr>
-                <td>Arduino Nano (ATmega328P)</td>
-                <td>✅</td>
-                <td>Fully capable as Modbus RTU slave</td>
-            </tr>
-
-            <tr>
-                <td>RP2040 / PIC / Others</td>
-                <td>✅</td>
-                <td>As long as UART Modbus RTU is supported</td>
-            </tr>
-        </table>
+            <ul>
+                <li>Higher processing performance suitable for managing multiple room nodes simultaneously.</li>
+                <li>Larger RAM and Flash capacity for MQTT, automation rules, and future software expansion.</li>
+                <li>Native support for secure networking and OTA firmware updates.</li>
+                <li>Supports Ethernet interfaces (LAN8720/W5500) for reliable LAN/VLAN connectivity.</li>
+                <li>Sufficient resources for local dashboards, logging, and data buffering.</li>
+                <li>Dual-core architecture allows separation of communication and application tasks.</li>
+                <li>Large ecosystem and long-term support reduce development and maintenance costs.</li>
+                <li>Provides headroom for future features without requiring hardware redesign.</li>
+            </ul>
         </div>
     </div>
 
@@ -281,7 +275,7 @@ footer{
 </div>
 
 <footer>
-    Smart Kos IoT System Proposal • Modular Building Automation Platform
+    System Proposal • Modular Building Automation Platform
 </footer>
 
 </body>
